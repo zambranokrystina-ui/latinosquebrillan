@@ -21,16 +21,13 @@
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 body { background:var(--black); color:var(--white); font-family:'Lato',sans-serif; min-height:100vh; overflow-x:hidden; }
-
-/* BG */
 body::before { content:''; position:fixed; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,175,55,0.07) 0%, transparent 60%); pointer-events:none; z-index:0; }
 
-/* WRAPPER */
 .wrapper { position:relative; z-index:1; max-width:780px; margin:0 auto; padding:40px 20px 80px; }
 
 /* HEADER */
 .form-header { text-align:center; margin-bottom:48px; }
-.form-header .crown-line { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:10px; }
+.crown-line { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:10px; }
 .form-header h1 { font-family:'Cinzel Decorative',serif; font-size:clamp(1.4rem,4vw,2.2rem); font-weight:700; background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
 .form-header p { font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--white-muted); margin-top:8px; }
 .gold-line { width:100px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:14px auto 0; }
@@ -54,7 +51,6 @@ body::before { content:''; position:fixed; inset:0; background:radial-gradient(e
 .step.active { display:block; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
 
-/* STEP TITLE */
 .step-title { font-family:'Cinzel',serif; font-size:0.68rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
 .step-heading { font-family:'Cinzel Decorative',serif; font-size:clamp(1.1rem,3vw,1.6rem); color:var(--white); margin-bottom:6px; }
 .step-desc { font-size:0.88rem; color:var(--white-muted); line-height:1.6; margin-bottom:28px; }
@@ -65,11 +61,11 @@ body::before { content:''; position:fixed; inset:0; background:radial-gradient(e
 .info-box p { font-size:0.82rem; color:var(--white-muted); line-height:1.6; }
 .info-box strong { color:var(--gold); }
 
-/* FORM ELEMENTS */
+/* FIELDS */
 .field-group { margin-bottom:22px; }
 .field-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 label.field-label { display:block; font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-bottom:7px; }
-label.field-label span.req { color:var(--red); margin-left:2px; }
+label.field-label .req { color:var(--red); margin-left:2px; }
 input[type=text], input[type=email], input[type=tel], input[type=date], select, textarea {
   width:100%; background:rgba(255,255,255,0.03); border:1px solid rgba(212,175,55,0.2);
   color:var(--white); padding:13px 16px; font-family:'Lato',sans-serif; font-size:0.92rem;
@@ -80,32 +76,19 @@ input.error, select.error, textarea.error { border-color:var(--red) !important; 
 select option { background:var(--black-card); color:var(--white); }
 textarea { resize:vertical; min-height:80px; }
 ::placeholder { color:rgba(200,192,168,0.35); }
+.field-error { font-size:0.75rem; color:var(--red); margin-top:5px; display:none; }
+.field-error.show { display:block; }
 
-/* UPLOAD FIELD */
-.upload-area { border:1px dashed rgba(212,175,55,0.3); padding:24px; text-align:center; cursor:pointer; transition:all 0.3s; background:rgba(212,175,55,0.02); position:relative; }
-.upload-area:hover { border-color:var(--gold); background:rgba(212,175,55,0.05); }
-.upload-area input[type=file] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
-.upload-icon { margin-bottom:8px; }
-.upload-label { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:4px; }
-.upload-hint { font-size:0.78rem; color:var(--white-muted); }
-.upload-preview { font-size:0.8rem; color:var(--green); margin-top:8px; display:none; }
+/* MANAGED BOX */
+.managed-box { border:1px solid rgba(212,175,55,0.35); background:linear-gradient(135deg,rgba(212,175,55,0.06),rgba(212,175,55,0.02)); padding:28px; text-align:center; margin-bottom:28px; }
+.managed-box h3 { font-family:'Cinzel',serif; font-size:0.85rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+.managed-box p { font-size:0.86rem; color:var(--white-muted); line-height:1.6; }
 
-/* RADIO / OPTION CARDS */
-.option-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
-.option-card { position:relative; }
-.option-card input[type=radio] { position:absolute; opacity:0; width:0; height:0; }
-.option-card label { display:flex; flex-direction:column; align-items:center; gap:8px; padding:16px 12px; border:1px solid rgba(212,175,55,0.2); background:rgba(212,175,55,0.02); cursor:pointer; transition:all 0.3s; text-align:center; }
-.option-card label svg { opacity:0.5; transition:opacity 0.3s; }
-.option-card label span { font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--white-muted); transition:color 0.3s; }
-.option-card input:checked + label { border-color:var(--gold); background:rgba(212,175,55,0.08); }
-.option-card input:checked + label svg { opacity:1; }
-.option-card input:checked + label span { color:var(--gold); }
-
-/* BANK FIELDS HINT */
+/* BANK HINT */
 .bank-hint { display:flex; gap:16px; margin-top:10px; }
-.bank-hint-img { flex:1; background:rgba(212,175,55,0.05); border:1px solid rgba(212,175,55,0.15); padding:12px; text-align:center; }
-.bank-hint-img p { font-size:0.72rem; color:var(--white-muted); line-height:1.5; margin-top:6px; }
-.bank-hint-img strong { color:var(--gold); font-size:0.75rem; }
+.bank-hint-box { flex:1; background:rgba(212,175,55,0.05); border:1px solid rgba(212,175,55,0.15); padding:14px; text-align:center; }
+.bank-hint-box p { font-size:0.75rem; color:var(--white-muted); line-height:1.5; margin-top:8px; }
+.bank-hint-box strong { color:var(--gold); }
 
 /* BUTTONS */
 .btn-nav { display:flex; gap:12px; margin-top:36px; justify-content:space-between; }
@@ -115,13 +98,15 @@ textarea { resize:vertical; min-height:80px; }
 .btn-next::after { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent); transition:left 0.5s; }
 .btn-next:hover::after { left:100%; }
 .btn-next:hover { box-shadow:0 6px 24px rgba(212,175,55,0.35); transform:translateY(-1px); }
-.btn-next:disabled { opacity:0.5; cursor:not-allowed; transform:none; box-shadow:none; }
+.btn-next:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
 
-/* MANAGED SECTION */
-.managed-box { border:1px solid rgba(212,175,55,0.35); background:linear-gradient(135deg,rgba(212,175,55,0.06),rgba(212,175,55,0.02)); padding:28px; text-align:center; margin-bottom:28px; }
-.managed-box svg { margin-bottom:12px; opacity:0.8; }
-.managed-box h3 { font-family:'Cinzel',serif; font-size:0.85rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
-.managed-box p { font-size:0.86rem; color:var(--white-muted); line-height:1.6; }
+/* RESUMEN */
+.resumen-table { background:var(--black-card); border:1px solid rgba(212,175,55,0.2); overflow:hidden; margin-bottom:24px; }
+.resumen-header { background:rgba(212,175,55,0.08); padding:12px 20px; font-family:'Cinzel',serif; font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); }
+.resumen-row { display:flex; justify-content:space-between; align-items:center; padding:10px 20px; border-bottom:1px solid rgba(212,175,55,0.06); }
+.resumen-row:last-child { border-bottom:none; }
+.resumen-label { font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--white-muted); }
+.resumen-val { font-size:0.85rem; color:var(--white); text-align:right; max-width:60%; }
 
 /* SUCCESS */
 .success-screen { display:none; text-align:center; padding:60px 20px; animation:fadeIn 0.6s ease; }
@@ -129,13 +114,9 @@ textarea { resize:vertical; min-height:80px; }
 .success-icon { width:80px; height:80px; border:2px solid var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; background:rgba(212,175,55,0.08); }
 .success-screen h2 { font-family:'Cinzel Decorative',serif; font-size:1.8rem; color:var(--gold); margin-bottom:12px; }
 .success-screen p { font-size:0.95rem; color:var(--white-muted); line-height:1.7; max-width:480px; margin:0 auto 28px; }
-.success-detail { background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.2); padding:20px 24px; max-width:420px; margin:0 auto; text-align:left; }
-.success-detail p { font-size:0.82rem; color:var(--white-muted); margin-bottom:6px; }
+.success-detail { background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.2); padding:20px 24px; max-width:440px; margin:0 auto; text-align:left; }
+.success-detail p { font-size:0.84rem; color:var(--white-muted); margin-bottom:8px; line-height:1.5; }
 .success-detail strong { color:var(--gold); }
-
-/* ERROR MSG */
-.field-error { font-size:0.75rem; color:var(--red); margin-top:5px; display:none; }
-.field-error.show { display:block; }
 
 /* FOOTER */
 .form-footer { text-align:center; margin-top:48px; padding-top:24px; border-top:1px solid rgba(212,175,55,0.1); }
@@ -145,13 +126,11 @@ textarea { resize:vertical; min-height:80px; }
 @media(max-width:600px) {
   .field-row { grid-template-columns:1fr; }
   .bank-hint { flex-direction:column; }
-  .option-cards { grid-template-columns:1fr 1fr; }
 }
 </style>
 </head>
 <body>
 
-<!-- INLINE SVG SPRITE -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
   <symbol id="i-crown" viewBox="0 0 40 40" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="4,30 10,14 20,22 30,14 36,30" stroke-width="2.2"/>
@@ -163,34 +142,8 @@ textarea { resize:vertical; min-height:80px; }
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="20 6 9 17 4 12" stroke-width="2.5"/>
   </symbol>
-  <symbol id="i-upload" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="16 16 12 12 8 16" stroke-width="1.8"/>
-    <line x1="12" y1="12" x2="12" y2="21" stroke-width="1.8"/>
-    <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3" stroke-width="1.8"/>
-  </symbol>
-  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" stroke-width="1.8"/>
-    <path d="M7 11V7a5 5 0 0 1 10 0v4" stroke-width="1.8"/>
-  </symbol>
-  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke-width="1.8"/>
-    <circle cx="12" cy="7" r="4" stroke-width="1.8"/>
-  </symbol>
-  <symbol id="i-id" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="2" y="5" width="20" height="14" rx="2" stroke-width="1.8"/>
-    <circle cx="8" cy="12" r="2" stroke-width="1.8"/>
-    <path d="M14 9h4M14 12h4M14 15h2" stroke-width="1.8"/>
-  </symbol>
-  <symbol id="i-bank" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-width="1.8"/>
-    <polyline points="9 22 9 12 15 12 15 22" stroke-width="1.8"/>
-  </symbol>
   <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke-width="1.8"/>
-  </symbol>
-  <symbol id="i-send" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="22" y1="2" x2="11" y2="13" stroke-width="1.8"/>
-    <polygon points="22 2 15 22 11 13 2 9 22 2" stroke-width="1.8"/>
   </symbol>
 </svg>
 
@@ -208,38 +161,36 @@ textarea { resize:vertical; min-height:80px; }
   </div>
 
   <!-- PROGRESS -->
-  <div class="progress-wrap">
+  <div class="progress-wrap" id="progressWrap">
     <div class="progress-steps">
       <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
       <div class="step-dot active" id="dot1"><span>1</span></div>
       <div class="step-dot" id="dot2"><span>2</span></div>
       <div class="step-dot" id="dot3"><span>3</span></div>
-      <div class="step-dot" id="dot4"><span>4</span></div>
     </div>
     <div class="progress-labels">
       <span class="active" id="lbl1">Personal</span>
-      <span id="lbl2">Identidad</span>
-      <span id="lbl3">Banco</span>
-      <span id="lbl4">Confirmar</span>
+      <span id="lbl2">Banco</span>
+      <span id="lbl3">Confirmar</span>
     </div>
   </div>
 
   <!-- ═══ STEP 1: INFORMACION PERSONAL ═══ -->
   <div class="step active" id="step1">
-    <p class="step-title">Paso 1 de 4</p>
+    <p class="step-title">Paso 1 de 3</p>
     <h2 class="step-heading">Informacion Personal</h2>
-    <p class="step-desc">Estos datos son necesarios para registrar al titular de la cuenta en Stripe. Todo es confidencial.</p>
+    <p class="step-desc">Datos necesarios para registrar al titular de la cuenta en Stripe. Todo es confidencial.</p>
     <div class="step-divider"></div>
 
     <div class="field-row">
       <div class="field-group">
         <label class="field-label" for="nombre">Nombre legal completo <span class="req">*</span></label>
-        <input type="text" id="nombre" placeholder="Como aparece en tu ID oficial" required>
+        <input type="text" id="nombre" placeholder="Como aparece en tu ID oficial">
         <div class="field-error" id="err-nombre">Por favor ingresa tu nombre completo</div>
       </div>
       <div class="field-group">
         <label class="field-label" for="fecha_nac">Fecha de nacimiento <span class="req">*</span></label>
-        <input type="date" id="fecha_nac" required>
+        <input type="date" id="fecha_nac">
         <div class="field-error" id="err-fecha_nac">Por favor ingresa tu fecha de nacimiento</div>
       </div>
     </div>
@@ -290,91 +241,11 @@ textarea { resize:vertical; min-height:80px; }
     </div>
   </div>
 
-  <!-- ═══ STEP 2: IDENTIFICACION ═══ -->
+  <!-- ═══ STEP 2: BANCO ═══ -->
   <div class="step" id="step2">
-    <p class="step-title">Paso 2 de 4</p>
-    <h2 class="step-heading">Identificacion Oficial</h2>
-    <p class="step-desc">Stripe requiere una identificacion con foto para verificar tu identidad. Sube fotos claras, sin reflejos y con todo el texto legible.</p>
-    <div class="step-divider"></div>
-
-    <div class="field-group">
-      <label class="field-label">Tipo de identificacion <span class="req">*</span></label>
-      <div class="option-cards">
-        <div class="option-card">
-          <input type="radio" name="tipo_id" id="id_pasaporte" value="Pasaporte">
-          <label for="id_pasaporte">
-            <svg width="28" height="28" style="stroke:var(--gold);"><use href="#i-id"/></svg>
-            <span>Pasaporte</span>
-          </label>
-        </div>
-        <div class="option-card">
-          <input type="radio" name="tipo_id" id="id_licencia" value="Licencia de conducir">
-          <label for="id_licencia">
-            <svg width="28" height="28" style="stroke:var(--gold);"><use href="#i-id"/></svg>
-            <span>Licencia</span>
-          </label>
-        </div>
-        <div class="option-card">
-          <input type="radio" name="tipo_id" id="id_greencard" value="Green Card">
-          <label for="id_greencard">
-            <svg width="28" height="28" style="stroke:var(--gold);"><use href="#i-id"/></svg>
-            <span>Green Card</span>
-          </label>
-        </div>
-        <div class="option-card">
-          <input type="radio" name="tipo_id" id="id_estatal" value="ID Estatal">
-          <label for="id_estatal">
-            <svg width="28" height="28" style="stroke:var(--gold);"><use href="#i-id"/></svg>
-            <span>ID Estatal</span>
-          </label>
-        </div>
-      </div>
-      <div class="field-error" id="err-tipo_id">Selecciona tu tipo de identificacion</div>
-    </div>
-
-    <div class="field-group" style="margin-top:24px;">
-      <label class="field-label">Foto — Frente del documento <span class="req">*</span></label>
-      <div class="upload-area" id="upload1area">
-        <input type="file" id="id_frente" accept="image/*,.pdf" onchange="handleFile(this,'preview1','upload1area')">
-        <div class="upload-icon">
-          <svg width="32" height="32" style="stroke:var(--gold);fill:none;"><use href="#i-upload"/></svg>
-        </div>
-        <span class="upload-label">Subir frente del documento</span>
-        <span class="upload-hint">JPG, PNG o PDF &bull; Max 10MB</span>
-        <div class="upload-preview" id="preview1"></div>
-      </div>
-      <div class="field-error" id="err-id_frente">Por favor sube la foto del frente</div>
-    </div>
-
-    <div class="field-group" id="reverso-wrap">
-      <label class="field-label">Foto — Reverso del documento <span class="req">*</span></label>
-      <div class="upload-area" id="upload2area">
-        <input type="file" id="id_reverso" accept="image/*,.pdf" onchange="handleFile(this,'preview2','upload2area')">
-        <div class="upload-icon">
-          <svg width="32" height="32" style="stroke:var(--gold);fill:none;"><use href="#i-upload"/></svg>
-        </div>
-        <span class="upload-label">Subir reverso del documento</span>
-        <span class="upload-hint">JPG, PNG o PDF &bull; Max 10MB</span>
-        <div class="upload-preview" id="preview2"></div>
-      </div>
-      <div class="field-error" id="err-id_reverso">Por favor sube la foto del reverso</div>
-    </div>
-
-    <div class="info-box">
-      <p><strong>Consejo:</strong> Toma las fotos en un lugar bien iluminado, sin flash directo. Asegurate de que todos los datos sean legibles antes de subir.</p>
-    </div>
-
-    <div class="btn-nav">
-      <button class="btn-prev" onclick="goPrev(2)">&larr; Anterior</button>
-      <button class="btn-next" onclick="goNext(2)">Siguiente &rarr;</button>
-    </div>
-  </div>
-
-  <!-- ═══ STEP 3: INFORMACION BANCARIA ═══ -->
-  <div class="step" id="step3">
-    <p class="step-title">Paso 3 de 4</p>
+    <p class="step-title">Paso 2 de 3</p>
     <h2 class="step-heading">Informacion Bancaria</h2>
-    <p class="step-desc">Aqui es donde Stripe depositara tus pagos. Asegurate de usar una cuenta corriente (checking), no de ahorros.</p>
+    <p class="step-desc">Aqui es donde Stripe depositara tus pagos. Usa una cuenta corriente (checking), no de ahorros.</p>
     <div class="step-divider"></div>
 
     <div class="field-group">
@@ -403,80 +274,77 @@ textarea { resize:vertical; min-height:80px; }
 
     <div class="field-row">
       <div class="field-group">
-        <label class="field-label" for="account_number">Numero de cuenta (Account Number) <span class="req">*</span></label>
-        <input type="text" id="account_number" placeholder="Ej: 000123456789" maxlength="20">
-        <div class="field-error" id="err-account_number">Ingresa tu numero de cuenta</div>
+        <label class="field-label" for="routing_number">Routing Number <span class="req">*</span></label>
+        <input type="text" id="routing_number" placeholder="9 digitos — Ej: 021000021" maxlength="9">
+        <div class="field-error" id="err-routing_number">El routing number tiene exactamente 9 digitos</div>
       </div>
       <div class="field-group">
-        <label class="field-label" for="routing_number">Numero de ruta (Routing Number) <span class="req">*</span></label>
-        <input type="text" id="routing_number" placeholder="9 digitos — Ej: 021000021" maxlength="9">
-        <div class="field-error" id="err-routing_number">El routing number tiene 9 digitos</div>
+        <label class="field-label" for="account_number">Account Number <span class="req">*</span></label>
+        <input type="text" id="account_number" placeholder="Ej: 000123456789" maxlength="20">
+        <div class="field-error" id="err-account_number">Ingresa tu numero de cuenta</div>
       </div>
     </div>
 
     <div class="bank-hint">
-      <div class="bank-hint-img">
-        <svg width="60" height="40" viewBox="0 0 120 60" style="stroke:var(--gold);fill:none;stroke-width:1.5;">
+      <div class="bank-hint-box">
+        <svg width="56" height="36" viewBox="0 0 120 60" style="stroke:var(--gold);fill:none;stroke-width:1.5;">
           <rect x="5" y="5" width="110" height="50" rx="4"/>
-          <line x1="5" y1="38" x2="115" y2="38"/>
-          <rect x="15" y="42" width="18" height="6" rx="1" style="fill:rgba(212,175,55,0.2)"/>
-          <rect x="40" y="42" width="30" height="6" rx="1" style="fill:rgba(212,175,55,0.2)"/>
-          <text x="15" y="30" style="font-size:5px;fill:rgba(212,175,55,0.6);stroke:none;">ROUTING  |  ACCOUNT</text>
+          <line x1="5" y1="40" x2="115" y2="40"/>
+          <rect x="12" y="44" width="22" height="7" rx="1" style="fill:rgba(212,175,55,0.2)"/>
+          <rect x="40" y="44" width="32" height="7" rx="1" style="fill:rgba(212,175,55,0.2)"/>
+          <text x="12" y="36" style="font-size:5px;fill:rgba(212,175,55,0.6);stroke:none;">ROUTING | ACCOUNT</text>
         </svg>
-        <p><strong>Routing Number:</strong> 9 digitos al inicio de la linea inferior de tu cheque</p>
+        <p><strong>Routing:</strong> 9 digitos al inicio de la linea inferior de tu cheque</p>
       </div>
-      <div class="bank-hint-img">
-        <svg width="60" height="40" viewBox="0 0 120 60" style="stroke:var(--gold);fill:none;stroke-width:1.5;">
+      <div class="bank-hint-box">
+        <svg width="56" height="36" viewBox="0 0 120 60" style="stroke:var(--gold);fill:none;stroke-width:1.5;">
           <rect x="5" y="5" width="110" height="50" rx="4"/>
-          <rect x="15" y="15" width="40" height="8" rx="2" style="fill:rgba(212,175,55,0.15)"/>
-          <text x="17" y="22" style="font-size:5px;fill:rgba(212,175,55,0.7);stroke:none;">Checking Account</text>
-          <line x1="15" y1="35" x2="75" y2="35" style="stroke-dasharray:3,2"/>
+          <rect x="12" y="14" width="45" height="9" rx="2" style="fill:rgba(212,175,55,0.15)"/>
+          <text x="14" y="21" style="font-size:5px;fill:rgba(212,175,55,0.7);stroke:none;">Checking Account</text>
+          <line x1="12" y1="36" x2="78" y2="36" style="stroke-dasharray:3,2"/>
         </svg>
-        <p><strong>Account Number:</strong> Encontrado en tu estado de cuenta o app del banco</p>
+        <p><strong>Account:</strong> En tu estado de cuenta o app del banco</p>
       </div>
     </div>
 
     <div class="field-group" style="margin-top:20px;">
       <label class="field-label" for="titular_banco">Titular de la cuenta bancaria <span class="req">*</span></label>
-      <input type="text" id="titular_banco" placeholder="Nombre como aparece en el banco">
+      <input type="text" id="titular_banco" placeholder="Nombre exacto como aparece en el banco">
       <div class="field-error" id="err-titular_banco">Ingresa el nombre del titular</div>
     </div>
 
-    <div class="managed-box" style="margin-top:8px;">
-      <svg width="28" height="28" style="stroke:var(--gold);fill:none;display:block;margin:0 auto 10px;"><use href="#i-star"/></svg>
-      <h3>Informacion del Negocio y Cobros</h3>
-      <p>La configuracion del negocio en Stripe, los precios de membresia, eventos y la politica de reembolsos seran configurados directamente por <strong style="color:var(--gold)">Krystina / Mercadeo MRR LLC</strong>. No necesitas hacer nada en estas secciones.</p>
+    <div class="managed-box">
+      <svg width="26" height="26" style="stroke:var(--gold);fill:none;display:block;margin:0 auto 10px;"><use href="#i-star"/></svg>
+      <h3>Negocio, Cobros y Politica de Reembolso</h3>
+      <p>La configuracion del negocio en Stripe, los precios de membresia, eventos y la politica de reembolsos seran configurados por <strong>Krystina / Mercadeo MRR LLC</strong>. No necesitas hacer nada en estas secciones.</p>
     </div>
 
     <div class="btn-nav">
-      <button class="btn-prev" onclick="goPrev(3)">&larr; Anterior</button>
-      <button class="btn-next" onclick="goNext(3)">Siguiente &rarr;</button>
+      <button class="btn-prev" onclick="goPrev(2)">&larr; Anterior</button>
+      <button class="btn-next" onclick="goNext(2)">Siguiente &rarr;</button>
     </div>
   </div>
 
-  <!-- ═══ STEP 4: CONFIRMACION ═══ -->
-  <div class="step" id="step4">
-    <p class="step-title">Paso 4 de 4</p>
+  <!-- ═══ STEP 3: CONFIRMACION ═══ -->
+  <div class="step" id="step3">
+    <p class="step-title">Paso 3 de 3</p>
     <h2 class="step-heading">Confirmar y Enviar</h2>
-    <p class="step-desc">Revisa que todo este correcto antes de enviar. Una vez enviado, Krystina recibira tu informacion y te contactara en menos de 24 horas.</p>
+    <p class="step-desc">Revisa que todo este correcto. Una vez enviado, Krystina recibira tu informacion y te contactara pronto.</p>
     <div class="step-divider"></div>
 
-    <div id="resumen" style="margin-bottom:28px;"></div>
+    <div id="resumen"></div>
 
     <div class="field-group">
-      <label class="field-label">Notas adicionales (opcional)</label>
+      <label class="field-label" for="notas">Notas adicionales (opcional)</label>
       <textarea id="notas" placeholder="Algo que quieras comunicar o aclarar..."></textarea>
     </div>
 
     <div class="info-box">
-      <p>
-        <strong>Al enviar confirmas que:</strong><br>
-        La informacion proporcionada es veridica y corresponde a documentos legales vigentes. Entiendes que esta informacion sera utilizada para crear tu cuenta de Stripe y conectar los pagos de tu membresia en Latinos que Brillan.
-      </p>
+      <p><strong>Al enviar confirmas que:</strong> La informacion es veridica y corresponde a documentos legales vigentes. Sera utilizada exclusivamente para crear tu cuenta de Stripe.</p>
     </div>
 
     <div class="btn-nav">
-      <button class="btn-prev" onclick="goPrev(4)">&larr; Anterior</button>
+      <button class="btn-prev" onclick="goPrev(3)">&larr; Anterior</button>
       <button class="btn-next" id="btnEnviar" onclick="enviarFormulario()">
         <span id="btn-text">Enviar Formulario</span>
         <span id="btn-loading" style="display:none;">Enviando...</span>
@@ -484,7 +352,7 @@ textarea { resize:vertical; min-height:80px; }
     </div>
   </div>
 
-  <!-- ═══ SUCCESS ═══ -->
+  <!-- SUCCESS -->
   <div class="success-screen" id="successScreen">
     <div class="success-icon">
       <svg width="36" height="36" style="stroke:var(--gold);fill:none;"><use href="#i-check"/></svg>
@@ -493,55 +361,45 @@ textarea { resize:vertical; min-height:80px; }
     <p>Tu formulario fue enviado exitosamente. Krystina revisara tu informacion y te contactara en menos de 24 horas para continuar con el proceso.</p>
     <div class="success-detail">
       <p><strong>Que sigue:</strong></p>
-      <p>Krystina creara tu cuenta de Stripe con tu informacion</p>
-      <p>Recibiras un email de Stripe para verificar tu cuenta</p>
-      <p>Una vez activa, tu pagina comenzara a recibir pagos</p>
+      <p>&#9654; Krystina crea tu cuenta de Stripe con tu informacion</p>
+      <p>&#9654; Recibiras un email de Stripe para verificar tu cuenta</p>
+      <p>&#9654; Una vez activa, tu pagina comienza a recibir pagos</p>
       <br>
-      <p><strong>Contacto:</strong> <a href="https://wa.me/19197715951" style="color:var(--gold);">(919) 771-5951</a></p>
+      <p><strong>Dudas:</strong> <a href="https://wa.me/19197715951" style="color:var(--gold);">(919) 771-5951</a></p>
     </div>
   </div>
 
-  <!-- FOOTER -->
   <div class="form-footer">
-    <p>Formulario desarrollado por <a href="https://zambranokrystina-ui.github.io/latinosquebrillan/">Mercadeo MRR LLC</a> &nbsp;&bull;&nbsp; (919) 771-5951</p>
+    <p>Formulario desarrollado por <a href="https://www.mercadeomrr.com">Mercadeo MRR LLC</a> &bull; (919) 771-5951</p>
   </div>
 
 </div>
 
 <script>
-// ══════════════════════════════════════════
-// CONFIGURACION — REEMPLAZA ESTA URL
-// ══════════════════════════════════════════
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2-I618WiHnKHQsBkMoav96FRxiHVYVpUqolTbWvlKXOWKhqURjn3g2ooBd8_JKC6WIg/exec";
-// ══════════════════════════════════════════
 
 let currentStep = 1;
-const totalSteps = 4;
 
-// ── NAVIGATION ──
 function goNext(step) {
   if (!validateStep(step)) return;
   currentStep = step + 1;
   showStep(currentStep);
-  if (currentStep === 4) buildResumen();
+  if (currentStep === 3) buildResumen();
 }
-
 function goPrev(step) {
   currentStep = step - 1;
   showStep(currentStep);
 }
-
 function showStep(n) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   document.getElementById('step' + n).classList.add('active');
   updateProgress(n);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-
 function updateProgress(n) {
-  const pct = [(0),(33),(66),(100)][n-1];
-  document.getElementById('progressFill').style.width = pct + '%';
-  for (let i = 1; i <= totalSteps; i++) {
+  const pcts = [0, 50, 100];
+  document.getElementById('progressFill').style.width = pcts[n-1] + '%';
+  for (let i = 1; i <= 3; i++) {
     const dot = document.getElementById('dot' + i);
     const lbl = document.getElementById('lbl' + i);
     dot.className = 'step-dot' + (i < n ? ' done' : i === n ? ' active' : '');
@@ -549,30 +407,6 @@ function updateProgress(n) {
     lbl.className = i === n ? 'active' : '';
   }
 }
-
-// ── FILE UPLOAD ──
-function handleFile(input, previewId, areaId) {
-  const preview = document.getElementById(previewId);
-  if (input.files && input.files[0]) {
-    const name = input.files[0].name;
-    preview.textContent = '✓ Archivo seleccionado: ' + name;
-    preview.style.display = 'block';
-    document.getElementById(areaId).style.borderColor = 'var(--gold)';
-  }
-}
-
-// Pasaporte doesn't need reverso
-document.querySelectorAll('input[name=tipo_id]').forEach(r => {
-  r.addEventListener('change', function() {
-    const wrap = document.getElementById('reverso-wrap');
-    wrap.style.display = this.value === 'Pasaporte' ? 'none' : 'block';
-  });
-});
-
-// Banco otro
-document.getElementById('banco').addEventListener('change', function() {
-  document.getElementById('banco-otro-wrap').style.display = this.value === 'Otro' ? 'block' : 'none';
-});
 
 // SSN format
 document.getElementById('ssn_itin').addEventListener('input', function() {
@@ -582,89 +416,53 @@ document.getElementById('ssn_itin').addEventListener('input', function() {
   this.value = v;
 });
 
-// Routing — numbers only
+// Routing: numbers only
 document.getElementById('routing_number').addEventListener('input', function() {
   this.value = this.value.replace(/\D/g,'');
+});
+
+// Banco otro
+document.getElementById('banco').addEventListener('change', function() {
+  document.getElementById('banco-otro-wrap').style.display = this.value === 'Otro' ? 'block' : 'none';
 });
 
 // ── VALIDATION ──
 function validateStep(step) {
   let ok = true;
-
-  const required1 = ['nombre','fecha_nac','ssn_itin','tipo_doc_fiscal','direccion','telefono','email'];
-  const required3 = ['banco','account_number','routing_number','titular_banco'];
+  const check = (id, extraCheck) => {
+    const el = document.getElementById(id);
+    const err = document.getElementById('err-' + id);
+    const val = el ? el.value.trim() : '';
+    const failed = !val || (extraCheck && !extraCheck(val));
+    el.classList.toggle('error', failed);
+    if (err) err.classList.toggle('show', failed);
+    if (failed) ok = false;
+  };
 
   if (step === 1) {
-    required1.forEach(id => {
-      const el = document.getElementById(id);
-      const err = document.getElementById('err-' + id);
-      const val = el ? el.value.trim() : '';
-      if (!val) { el.classList.add('error'); err && err.classList.add('show'); ok = false; }
-      else { el.classList.remove('error'); err && err.classList.remove('show'); }
-    });
-    // Email format
-    const emailEl = document.getElementById('email');
-    if (emailEl.value && !/\S+@\S+\.\S+/.test(emailEl.value)) {
-      emailEl.classList.add('error');
-      document.getElementById('err-email').classList.add('show');
-      ok = false;
-    }
+    check('nombre');
+    check('fecha_nac');
+    check('ssn_itin');
+    check('tipo_doc_fiscal');
+    check('direccion');
+    check('telefono');
+    check('email', v => /\S+@\S+\.\S+/.test(v));
   }
-
   if (step === 2) {
-    const tipoId = document.querySelector('input[name=tipo_id]:checked');
-    if (!tipoId) {
-      document.getElementById('err-tipo_id').classList.add('show'); ok = false;
-    } else {
-      document.getElementById('err-tipo_id').classList.remove('show');
-    }
-    const frente = document.getElementById('id_frente');
-    if (!frente.files || !frente.files[0]) {
-      document.getElementById('err-id_frente').classList.add('show'); ok = false;
-    } else {
-      document.getElementById('err-id_frente').classList.remove('show');
-    }
-    // Reverso only if not pasaporte
-    const needReverso = tipoId && tipoId.value !== 'Pasaporte';
-    if (needReverso) {
-      const reverso = document.getElementById('id_reverso');
-      if (!reverso.files || !reverso.files[0]) {
-        document.getElementById('err-id_reverso').classList.add('show'); ok = false;
-      } else {
-        document.getElementById('err-id_reverso').classList.remove('show');
-      }
-    }
-  }
-
-  if (step === 3) {
-    required3.forEach(id => {
-      const el = document.getElementById(id);
-      const err = document.getElementById('err-' + id);
-      const val = el ? el.value.trim() : '';
-      if (!val) { el.classList.add('error'); err && err.classList.add('show'); ok = false; }
-      else { el.classList.remove('error'); err && err.classList.remove('show'); }
-    });
-    // Routing: 9 digits
-    const rn = document.getElementById('routing_number').value.trim();
-    if (rn && rn.length !== 9) {
-      document.getElementById('routing_number').classList.add('error');
-      document.getElementById('err-routing_number').classList.add('show'); ok = false;
-    }
-    // Banco otro
+    check('banco');
+    check('routing_number', v => v.length === 9);
+    check('account_number');
+    check('titular_banco');
     if (document.getElementById('banco').value === 'Otro') {
-      const otroEl = document.getElementById('banco_otro');
-      if (!otroEl.value.trim()) { otroEl.classList.add('error'); ok = false; }
-      else otroEl.classList.remove('error');
+      check('banco_otro');
     }
   }
-
-  if (!ok) window.scrollTo({top:0,behavior:'smooth'});
+  if (!ok) window.scrollTo({ top: 0, behavior: 'smooth' });
   return ok;
 }
 
 // ── RESUMEN ──
 function buildResumen() {
-  const tipoId = document.querySelector('input[name=tipo_id]:checked');
   const banco = document.getElementById('banco').value;
   const bancoFinal = banco === 'Otro' ? document.getElementById('banco_otro').value : banco;
   const rows = [
@@ -674,19 +472,14 @@ function buildResumen() {
     ['Direccion', document.getElementById('direccion').value],
     ['Telefono', document.getElementById('telefono').value],
     ['Email', document.getElementById('email').value],
-    ['Tipo de ID', tipoId ? tipoId.value : '—'],
     ['Banco', bancoFinal],
-    ['Titular cuenta', document.getElementById('titular_banco').value],
-    ['Account Number', '••••' + document.getElementById('account_number').value.slice(-4)],
     ['Routing Number', document.getElementById('routing_number').value],
+    ['Account Number', '****' + document.getElementById('account_number').value.slice(-4)],
+    ['Titular cuenta', document.getElementById('titular_banco').value],
   ];
-  let html = '<div style="background:var(--black-card);border:1px solid rgba(212,175,55,0.2);overflow:hidden;">';
-  html += '<div style="background:rgba(212,175,55,0.08);padding:12px 20px;font-family:\'Cinzel\',serif;font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);">Resumen de tu informacion</div>';
+  let html = '<div class="resumen-table"><div class="resumen-header">Resumen de tu informacion</div>';
   rows.forEach(([label, val]) => {
-    html += `<div style="display:flex;justify-content:space-between;padding:10px 20px;border-bottom:1px solid rgba(212,175,55,0.06);">
-      <span style="font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--white-muted);">${label}</span>
-      <span style="font-size:0.85rem;color:var(--white);text-align:right;max-width:60%;">${val || '—'}</span>
-    </div>`;
+    html += `<div class="resumen-row"><span class="resumen-label">${label}</span><span class="resumen-val">${val || '—'}</span></div>`;
   });
   html += '</div>';
   document.getElementById('resumen').innerHTML = html;
@@ -697,56 +490,41 @@ async function enviarFormulario() {
   const btn = document.getElementById('btnEnviar');
   const btnText = document.getElementById('btn-text');
   const btnLoading = document.getElementById('btn-loading');
-
   btn.disabled = true;
   btnText.style.display = 'none';
   btnLoading.style.display = 'inline';
 
-  const tipoId = document.querySelector('input[name=tipo_id]:checked');
   const banco = document.getElementById('banco').value;
   const bancoFinal = banco === 'Otro' ? document.getElementById('banco_otro').value : banco;
 
   const data = {
-    timestamp: new Date().toLocaleString('es-US', {timeZone:'America/Chicago'}),
+    timestamp: new Date().toLocaleString('es-US', { timeZone: 'America/Chicago' }),
     nombre: document.getElementById('nombre').value,
     fecha_nacimiento: document.getElementById('fecha_nac').value,
     tipo_doc_fiscal: document.getElementById('tipo_doc_fiscal').value,
     direccion: document.getElementById('direccion').value,
     telefono: document.getElementById('telefono').value,
     email: document.getElementById('email').value,
-    tipo_identificacion: tipoId ? tipoId.value : '',
-    archivo_frente: document.getElementById('id_frente').files[0]?.name || '',
-    archivo_reverso: document.getElementById('id_reverso').files[0]?.name || '',
     banco: bancoFinal,
-    account_number_ultimos4: document.getElementById('account_number').value.slice(-4),
     routing_number: document.getElementById('routing_number').value,
+    account_number_ultimos4: document.getElementById('account_number').value.slice(-4),
     titular_cuenta: document.getElementById('titular_banco').value,
-    notas: document.getElementById('notas').value,
-    ssn_itin_ref: 'ENVIADO — ver documentos adjuntos'
+    notas: document.getElementById('notas').value || ''
   };
 
-  // Send to Apps Script
+  // ── Enviar a Google Sheets via fetch (no-cors) ──
   try {
-    if (APPS_SCRIPT_URL && APPS_SCRIPT_URL !== '') {
-      const img = new Image();
-      img.src = APPS_SCRIPT_URL + '?data=' + encodeURIComponent(JSON.stringify(data));
-    }
-    // Always show success (send by WhatsApp as backup)
-    setTimeout(() => showSuccess(data), 1200);
+    await fetch(APPS_SCRIPT_URL + '?data=' + encodeURIComponent(JSON.stringify(data)), {
+      method: 'GET',
+      mode: 'no-cors'
+    });
   } catch(e) {
-    setTimeout(() => showSuccess(data), 1200);
+    // Continua de todas formas — WhatsApp es respaldo
   }
-}
 
-function showSuccess(data) {
-  // Hide all steps and show success
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.querySelector('.progress-wrap').style.display = 'none';
-  document.getElementById('successScreen').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-
-  // Also open WhatsApp as backup confirmation
-  const msg = `*NUEVO FORMULARIO STRIPE — Latinos que Brillan*
+  // ── WhatsApp como respaldo ──
+  const msg =
+`*NUEVO FORMULARIO STRIPE — Latinos que Brillan*
 
 Nombre: ${data.nombre}
 Fecha nac.: ${data.fecha_nacimiento}
@@ -754,103 +532,24 @@ Doc. fiscal: ${data.tipo_doc_fiscal}
 Tel: ${data.telefono}
 Email: ${data.email}
 Direccion: ${data.direccion}
-Tipo ID: ${data.tipo_identificacion}
 Banco: ${data.banco}
 Routing: ${data.routing_number}
 Cuenta (ult. 4): ****${data.account_number_ultimos4}
 Titular: ${data.titular_cuenta}
 Notas: ${data.notas || 'N/A'}
 Enviado: ${data.timestamp}`;
+
+  // Mostrar pantalla de exito
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('successScreen').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Abrir WhatsApp despues de un momento
   setTimeout(() => {
     window.open('https://wa.me/19197715951?text=' + encodeURIComponent(msg), '_blank');
   }, 800);
 }
 </script>
-
-<!-- ══════════════════════════════════════════════════════
-  INSTRUCCIONES PARA CONECTAR GOOGLE SHEETS
-  ════════════════════════════════════════════════════════
-
-  PASO 1 — Crear el Google Sheet:
-  ─────────────────────────────────
-  1. Ve a sheets.google.com → Crear nueva hoja
-  2. Ponle el nombre: "Stripe - Latinos que Brillan"
-  3. En la fila 1 agrega estos encabezados exactos en cada columna:
-     A: Timestamp
-     B: Nombre
-     C: Fecha Nacimiento
-     D: Tipo Doc Fiscal
-     E: Direccion
-     F: Telefono
-     G: Email
-     H: Tipo ID
-     I: Archivo Frente
-     J: Archivo Reverso
-     K: Banco
-     L: Account Ultimos 4
-     M: Routing Number
-     N: Titular Cuenta
-     O: Notas
-
-  PASO 2 — Crear el Apps Script:
-  ─────────────────────────────────
-  1. En el Sheet ve a: Extensiones → Apps Script
-  2. Borra el codigo que aparece y pega este:
-
-  ─── CODIGO APPS SCRIPT ───────────────────────────────
-
-  function doGet(e) {
-    try {
-      var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-      var data = JSON.parse(decodeURIComponent(e.parameter.data));
-      sheet.appendRow([
-        data.timestamp,
-        data.nombre,
-        data.fecha_nacimiento,
-        data.tipo_doc_fiscal,
-        data.direccion,
-        data.telefono,
-        data.email,
-        data.tipo_identificacion,
-        data.archivo_frente,
-        data.archivo_reverso,
-        data.banco,
-        data.account_number_ultimos4,
-        data.routing_number,
-        data.titular_cuenta,
-        data.notas
-      ]);
-    } catch(err) {
-      // log error silently
-    }
-    return ContentService
-      .createTextOutput("OK")
-      .setMimeType(ContentService.MimeType.TEXT);
-  }
-
-  ──────────────────────────────────────────────────────
-
-  PASO 3 — Publicar el script:
-  ─────────────────────────────────
-  1. Click en "Implementar" → "Nueva implementacion"
-  2. Tipo: "Aplicacion web"
-  3. Ejecutar como: "Yo" (tu cuenta de Google)
-  4. Quien tiene acceso: "Cualquier persona"
-  5. Click "Implementar" → copia la URL que aparece
-
-  PASO 4 — Pegar la URL en este archivo:
-  ─────────────────────────────────
-  1. Abre este archivo HTML
-  2. Busca la linea que dice:
-     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby2-I618WiHnKHQsBkMoav96FRxiHVYVpUqolTbWvlKXOWKhqURjn3g2ooBd8_JKC6WIg/exec";
-  3. Reemplaza el texto con tu URL real, ej:
-     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/XXXXX/exec";
-
-  NOTA IMPORTANTE:
-  El SSN/ITIN NO se guarda en el Sheet por seguridad.
-  Se envia por WhatsApp cifrado junto con el resto de la confirmacion.
-  Los archivos de identificacion se envian por WhatsApp separadamente.
-
-══════════════════════════════════════════════════════ -->
 </body>
 </html>
