@@ -393,7 +393,7 @@
     </div>
     <p class="form-note">
       Al enviar, un miembro del equipo te contactara via WhatsApp para coordinar el pago y tu ingreso oficial.<br>
-      <a href="https://zambranokrystina-ui.github.io/latinosquebrillan/formulario-stripe.html" target="_blank">Formulario Stripe</a> &middot; Preguntas: <a href="https://wa.me/19197715951">WhatsApp</a>
+      <a href="https://zambranokrystina-ui.github.io/latinosquebrillan/formulario-stripe.html" target="_blank">Formulario Stripe</a> &middot; Preguntas: <a href="https://wa.me/13464491120">WhatsApp</a>
     </p>
   </div>
 </section>
@@ -554,7 +554,7 @@
     <a href="#unirme">Registro</a>
     <a href="#membresia">Planes</a>
     <a href="#eventos">Eventos</a>
-    <a href="https://wa.me/19197715951">WhatsApp</a>
+    <a href="https://wa.me/13464491120">WhatsApp</a>
   </div>
   <p class="copy">&copy; 2026 Latinos que Brillan. Todos los derechos reservados.</p>
   <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
@@ -585,14 +585,39 @@
   const obs=new IntersectionObserver((entries)=>{ entries.forEach((e,i)=>{ if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*80); obs.unobserve(e.target); } }); },{threshold:0.1});
   reveals.forEach(el=>obs.observe(el));
 
-  function handleSubmit(){
+  const SHEETS_URL = "https://script.google.com/macros/s/AKfycbwtKcOPZjUsAjdqbj1cX2jO-dR2WEHbgOTZmnPlDAu7U3kWMy-XpxwgHzbuch9vTOYJkg/exec";
+
+  async function handleSubmit(){
     const inputs=document.querySelectorAll('.form-container input,.form-container textarea');
     let valid=true;
     inputs.forEach(inp=>{ if(inp.value.trim()===''&&!inp.placeholder.includes('compartir')&&!inp.placeholder.includes('Dia')){ inp.style.borderColor='#c0392b'; valid=false; } else { inp.style.borderColor='rgba(212,175,55,0.2)'; } });
     if(!valid){ alert('Por favor completa todos los campos requeridos.'); return; }
     const v=[...inputs].map(i=>i.value);
-    const msg=`*NUEVA SOLICITUD - Latinos que Brillan*\n\nNombre: ${v[0]}\nTel: ${v[1]}\nEmail: ${v[2]}\nNacionalidad: ${v[3]}\nNegocio: ${v[4]}\nInstagram: ${v[5]}\nServicio: ${v[6]}\nCumpleanos: ${v[7]}\nArea: ${v[8]}\nNota: ${v[9]||'N/A'}`;
-    window.open(`https://wa.me/19197715951?text=${encodeURIComponent(msg)}`,'_blank');
+
+    const data = {
+      timestamp: new Date().toLocaleString('es-US', {timeZone:'America/Chicago'}),
+      nombre: v[0],
+      telefono: v[1],
+      email: v[2],
+      nacionalidad: v[3],
+      negocio: v[4],
+      instagram: v[5],
+      servicio: v[6],
+      cumpleanos: v[7],
+      area: v[8]
+    };
+
+    // Enviar a Google Sheets
+    try {
+      await fetch(SHEETS_URL + '?data=' + encodeURIComponent(JSON.stringify(data)), {
+        method: 'GET',
+        mode: 'no-cors'
+      });
+    } catch(e) {}
+
+    // WhatsApp como respaldo
+    const msg=`*NUEVA SOLICITUD - Latinos que Brillan*\n\nNombre: ${data.nombre}\nTel: ${data.telefono}\nEmail: ${data.email}\nNacionalidad: ${data.nacionalidad}\nNegocio: ${data.negocio}\nInstagram: ${data.instagram}\nServicio: ${data.servicio}\nCumpleanos: ${data.cumpleanos}\nArea: ${data.area}`;
+    window.open(`https://wa.me/13464491120?text=${encodeURIComponent(msg)}`,'_blank');
   }
 </script>
 </body>
