@@ -358,6 +358,7 @@
   <h2 class="section-title reveal">Unete a la Comunidad</h2>
   <div class="gold-line reveal"></div>
   <div class="form-container reveal">
+    <div id="join-form-inner">
     <div class="form-row">
       <div class="form-group"><label>Nombre Completo *</label><input type="text" placeholder="Tu nombre completo"></div>
       <div class="form-group"><label>Telefono / WhatsApp *</label><input type="tel" placeholder="+1 (000) 000-0000"></div>
@@ -376,13 +377,10 @@
       <div class="form-group"><label>Area donde Trabajas *</label><input type="text" placeholder="Ciudad / Estado"></div>
     </div>
     <div class="form-group"><label>Algo mas que quieras compartir?</label><textarea placeholder="Cuentanos mas sobre ti y tu negocio..."></textarea></div>
-
-    <!-- BOTON ENVIAR -->
-    <div id="form-fields-btn">
-      <button class="btn-gold" style="width:100%;padding:18px;font-size:0.85rem;margin-top:8px;" onclick="handleSubmit()">
-        Registrarme Ahora
-      </button>
-      <p class="form-note">Preguntas: <a href="https://wa.me/13464491120">WhatsApp</a></p>
+    <button class="btn-gold" style="width:100%;padding:18px;font-size:0.85rem;margin-top:8px;" onclick="handleSubmit()">
+      Registrarme Ahora
+    </button>
+    <p class="form-note">Preguntas: <a href="https://wa.me/13464491120">WhatsApp</a></p>
     </div>
 
     <!-- PANTALLA DE PAGO (oculta hasta enviar) -->
@@ -622,7 +620,7 @@
 
     // WhatsApp primero (debe ir antes del await para no ser bloqueado)
     const msg=`*NUEVA SOLICITUD - Latinos que Brillan*\n\nNombre: ${data.nombre}\nTel: ${data.telefono}\nEmail: ${data.email}\nNacionalidad: ${data.nacionalidad}\nNegocio: ${data.negocio}\nInstagram: ${data.instagram}\nServicio: ${data.servicio}\nCumpleanos: ${data.cumpleanos}\nArea: ${data.area}`;
-    window.open(`https://wa.me/13464491220?text=${encodeURIComponent(msg)}`,'_blank');
+    window.open(`https://wa.me/13464491120?text=${encodeURIComponent(msg)}`,'_blank');
 
     // Enviar a Google Sheets
     try {
@@ -633,8 +631,7 @@
     } catch(e) {}
 
     // Mostrar pantalla de pago
-    document.getElementById('form-fields-btn').style.display = 'none';
-    document.querySelectorAll('.form-container .form-row, .form-container .form-group').forEach(el => el.style.display = 'none');
+    document.getElementById('join-form-inner').style.display = 'none';
     document.getElementById('pago-screen').style.display = 'block';
     window.scrollTo({top: document.getElementById('unirme').offsetTop - 80, behavior: 'smooth'});
   }
