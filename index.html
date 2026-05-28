@@ -598,7 +598,7 @@
 
   const SHEETS_URL = "https://script.google.com/macros/s/AKfycbwtKcOPZjUsAjdqbj1cX2jO-dR2WEHbgOTZmnPlDAu7U3kWMy-XpxwgHzbuch9vTOYJkg/exec";
 
-  async function handleSubmit(){
+  function handleSubmit(){
     const inputs=document.querySelectorAll('.form-container input,.form-container textarea');
     let valid=true;
     inputs.forEach(inp=>{ if(inp.value.trim()===''&&!inp.placeholder.includes('compartir')&&!inp.placeholder.includes('Dia')){ inp.style.borderColor='#c0392b'; valid=false; } else { inp.style.borderColor='rgba(212,175,55,0.2)'; } });
@@ -618,17 +618,20 @@
       area: v[8]
     };
 
-    // WhatsApp primero (debe ir antes del await para no ser bloqueado)
+    // Enviar a Google Sheets (imagen ping, no bloquea)
     const msg=`*NUEVA SOLICITUD - Latinos que Brillan*\n\nNombre: ${data.nombre}\nTel: ${data.telefono}\nEmail: ${data.email}\nNacionalidad: ${data.nacionalidad}\nNegocio: ${data.negocio}\nInstagram: ${data.instagram}\nServicio: ${data.servicio}\nCumpleanos: ${data.cumpleanos}\nArea: ${data.area}`;
-    window.top.open(`https://wa.me/13464491220?text=${encodeURIComponent(msg)}`,'_blank');
-
-    // Enviar a Google Sheets
     try {
-      await fetch(SHEETS_URL + '?data=' + encodeURIComponent(JSON.stringify(data)), {
-        method: 'GET',
-        mode: 'no-cors'
-      });
+      new Image().src = SHEETS_URL + '?data=' + encodeURIComponent(JSON.stringify(data));
     } catch(e) {}
+
+    // Construir URL de WhatsApp y redirigir con target="_top" via enlace temporal
+    const waURL = 'https://wa.me/13464491220?text=' + encodeURIComponent(msg);
+    const waLink = document.createElement('a');
+    waLink.href = waURL;
+    waLink.target = '_top';
+    document.body.appendChild(waLink);
+    waLink.click();
+    document.body.removeChild(waLink);
 
     // Mostrar pantalla de pago
     document.getElementById('join-form-inner').style.display = 'none';
